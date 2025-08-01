@@ -614,6 +614,7 @@ html.y #path {
 	top: -.3em;
 	border-spacing: 0;
 	position: relative;
+	width: 100%;
 }
 #files tbody a {
 	display: block;
@@ -1538,7 +1539,6 @@ input.eq_gain {
 	bottom: 0;
 	overflow-y: auto;
 	overflow-x: hidden;
-	padding: 1.8em 1.5em 7em 1.5em;
 	scrollbar-color: var(--scroll) var(--bg-u3);
 }
 
