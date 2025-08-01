@@ -554,8 +554,7 @@ html,body,tr,th,td,#files,a,#blogout {
 html {
 	color: var(--fg);
 	background: var(--bgg);
-	font-family: sans-serif;
-	font-family: var(--font-main), sans-serif;
+	font-family: var(--font-main), "Noto Color Emoji", sans-serif;
 	text-shadow: 1px 1px 0px var(--bg-max);
 }
 html, body {
@@ -1369,6 +1368,8 @@ html.y #widget.open {
 }
 .opview {
 	display: none;
+	min-height: 10em;
+	height: auto;
 }
 .opview.act {
 	display: block;
@@ -1397,6 +1398,12 @@ html.y #widget.open {
 html.y #ops svg circle {
 	stroke: black;
 }
+#ops,
+.opview {
+	position: relative;
+	z-index: 100;
+}
+
 #ops {
 	padding: 12px .6em;
 	white-space: nowrap;
@@ -1560,7 +1567,7 @@ input.eq_gain {
 	width: 100%;
 }
 #wrap {
-	margin-left: 19em !important;
+	margin-left: 14%;
 	position: fixed;
 	top: 5rem;
 	left: 0;
@@ -2695,7 +2702,7 @@ html.y #bbox-overlay figcaption a {
 	min-width: 1.3em;
 }
 #u2conf {
-	margin: 1em auto;
+	margin: 0 auto;
 	width: 30em;
 }
 #u2conf.w {
@@ -2926,7 +2933,7 @@ html.a #ops {
 }
 html.c .opbox,
 html.a .opbox {
-	margin: 1.5em 0 0 0;
+	margin: 0 0 0 0;
 }
 html.dz .opview input.i {
 	width: calc(100% - 18em);
