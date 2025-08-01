@@ -685,6 +685,9 @@ a:hover {
 	background: var(--bg);
 	border-bottom: 1px solid var(--f-h-b1);
 	cursor: pointer;
+	position: sticky;
+	top: 0;
+	z-index: 10;
 }
 html.y #files thead th {
 	box-shadow: 0 1px 0 rgba(0,0,0,0.12);
@@ -1529,7 +1532,7 @@ input.eq_gain {
 }
 #wrap {
 	position: fixed;
-	top: 0;
+	top: 5rem;
 	left: 0;
 	right: 0;
 	bottom: 0;
