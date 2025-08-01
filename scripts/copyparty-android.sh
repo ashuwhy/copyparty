@@ -41,7 +41,7 @@ ve=$HOME/ve.copyparty
 
 	msg "installing copyparty from your fork"
 	. $ve/bin/activate
-	pip install 'git+https://github.com/ashuwhy/copyparty.git@hovudstraum'
+	pip install 'git+https://github.com/ashuwhy/copyparty.git@ashu'
 
 	deactivate
 	touch $ve/.ok
