@@ -422,17 +422,11 @@ if (!window.Set)
 
 // https://stackoverflow.com/a/950146
 function import_js(url, cb, ecb) {
-    var head = document.head || document.getElementsByTagName('head')[0];
-    var script = mknod('script');
-    script.type = 'text/javascript';
-    script.src = url + '?_=' + (window.TS || 'a');
-    script.onload = cb;
-    script.onerror = ecb || function () {
-        var m = 'Failed to load module:\n' + url;
-        console.log(m);
-        toast.err(0, m);
-    };
-    head.appendChild(script);
+	import(url).then(cb).catch(ecb || function (ex) {
+		var m = 'Failed to load module:\\n' + url + '\\n\\n' + ex;
+		console.log(m);
+		toast.err(0, m);
+	});
 }
 
 

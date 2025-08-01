@@ -25,17 +25,17 @@
 	--bg-d3: #121212;
 	--bg-max: #000000;
 
-	--tab-alt: #ff8f00;
+	--tab-alt: #ffffff;
 	--row-alt: #262626;
 
-	--scroll: #ffb300;
-	--sel-fg: #000000;
-	--sel-bg: #ffb300;
+	--scroll: #ffffff;
+	--sel-fg: #212121;
+	--sel-bg: #ffffff;
 
-	--a: #ffb300;
-	--a-b: #e6a100;
-	--a-hil: #ffc133;
-	--a-dark: #ff8f00;
+	--a: #ffffff;
+	--a-b: #f0f0f0;
+	--a-hil: #e0e0e0;
+	--a-dark: #cccccc;
 	--a-gray: #666;
 
 	--btn-fg: var(--a);
@@ -1588,37 +1588,60 @@ html {
 	width: calc(100% + 2em);
 }
 .btn {
-	color: var(--btn-fg);
-	background: #eee;
-	background: var(--btn-bg);
-	box-shadow: var(--btn-bs);
-	border-bottom: var(--btn-bb);
-	border-radius: .3em;
-	padding: .2em .4em;
+	width: 130px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgb(15, 15, 15);
+	border: none;
+	color: white;
+	font-weight: 600;
+	gap: 8px;
+	cursor: pointer;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.103);
+	position: relative;
+	overflow: hidden;
+	transition-duration: .3s;
 	font-size: 1.2em;
 	margin: .2em;
-	display: inline-block;
-	white-space: pre;
-	position: relative;
-	top: -.12em;
+	border-radius: .3em;
 }
-html.c .btn,
-html.a .btn {
-	border-radius: .2em;
+
+.svgIcon {
+  width: 16px;
 }
-html.dz .btn {
-	font-size: 1em;
+
+.svgIcon path {
+  fill: white;
 }
-.btn:hover {
-	color: var(--btn-h-fg);
-	background: var(--btn-h-bg);
-	box-shadow: var(--btn-h-bs);
-	border-bottom: var(--btn-h-bb);
+
+.btn::before {
+  width: 130px;
+  height: 130px;
+  position: absolute;
+  content: "";
+  background-color: white;
+  border-radius: 50%;
+  left: -100%;
+  top: 0;
+  transition-duration: .3s;
+  mix-blend-mode: difference;
 }
+
+.btn:hover::before {
+  transition-duration: .3s;
+  transform: translate(100%,-50%);
+  border-radius: 0;
+}
+
+.btn:active {
+  transform: translate(5px,5px);
+  transition-duration: .3s;
+}
+
 .tgl.btn.on {
-	background: #000;
 	background: var(--btn-1-bg);
-	color: #fff;
 	color: var(--btn-1-fg);
 	text-shadow: none;
 	box-shadow: var(--btn-1-bs);
