@@ -1149,8 +1149,6 @@ html.y #widget.open {
 	line-height: 1em;
 	text-align: center;
 	text-shadow: none;
-	box-shadow: 0 0 .5em var(--mp-sh);
-	border-radius: .3em 0 0 0;
 	padding: 0 0 0 .1em;
 	color: var(--fg-max);
 }
@@ -1181,6 +1179,15 @@ html.y #widget.open {
 #wtoggle,
 #wtoggle * {
 	line-height: 1em;
+}
+#wtoggle svg {
+	width: 1em;
+	height: 1em;
+	vertical-align: middle;
+	margin-right: 0.5em;
+}
+#wtoggle span {
+	vertical-align: middle;
 }
 #wtoggle.sel #wzip,
 #wtoggle.m3u #wm3u,
