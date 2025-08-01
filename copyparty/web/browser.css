@@ -1370,7 +1370,7 @@ html.y #ops svg circle {
 	stroke: black;
 }
 #ops {
-	padding: .3em .6em;
+	padding: 12px .6em;
 	white-space: nowrap;
 }
 #noie {
@@ -1532,6 +1532,7 @@ input.eq_gain {
 	width: 100%;
 }
 #wrap {
+	margin-left: 19em !important;
 	position: fixed;
 	top: 5rem;
 	left: 0;
@@ -1562,7 +1563,7 @@ input.eq_gain {
 	overflow-y: auto;
 	-ms-scroll-chaining: none;
 	overscroll-behavior-y: none;
-	box-shadow: 0 0 1em var(--bg-d2), 0 -1px 0 rgba(128,128,128,0.3);
+	/* box-shadow: 0 0 1em var(--bg-d2), 0 -1px 0 rgba(128,128,128,0.3); */
 }
 #tree,
 html {
@@ -2891,7 +2892,7 @@ html.b #pctl {
 html.d #ops,
 html.c #ops,
 html.a #ops {
-	margin: 1.7em 1.5em 0 1.5em;
+	margin: 1.7em 0 0 0;
 	border-radius: .3em;
 	border-width: 1px 0;
 }
@@ -2906,7 +2907,7 @@ html.c #tree,
 html.c #treeh,
 html.a #tree,
 html.a #treeh {
-	border-radius: 0 .3em 0 0;
+	/* border-radius: 0 .3em 0 0; */
 	background: var(--bg-u2);
 }
 html.c #treepar,
@@ -2938,8 +2939,8 @@ html.a #path,
 html.a #srch_form,
 html.a .ghead {
 	background: var(--bg-u2);
-	border: 1px solid var(--bg-u3);
-	box-shadow: 0 0 .3em var(--bg-d3);
+	/* border: 1px solid var(--bg-u3); */
+	/* box-shadow: 0 0 .3em var(--bg-d3); */
 }
 html.c #u2btn,
 html.a #u2btn {
