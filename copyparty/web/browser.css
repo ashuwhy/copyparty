@@ -561,6 +561,8 @@ html {
 html, body {
 	margin: 0;
 	padding: 0;
+	height: 100%;
+	overflow: hidden;
 }
 pre, code, tt, #doc, #doc>code {
 	font-family: 'scp', monospace, monospace;
@@ -1526,9 +1528,26 @@ input.eq_gain {
 	width: 100%;
 }
 #wrap {
-	margin: 1.8em 1.5em 0 1.5em;
-	min-height: 70vh;
-	padding-bottom: 7em;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 1.8em 1.5em 7em 1.5em;
+	scrollbar-color: var(--scroll) var(--bg-u3);
+}
+
+/* Adjust for scrollbar */
+#wrap::-webkit-scrollbar {
+	width: .5em;
+	background: var(--bg-u3);
+}
+
+#wrap::-webkit-scrollbar-thumb {
+	background: var(--scroll);
+	border-radius: .25em;
 }
 #tree {
 	display: none;
@@ -3081,7 +3100,7 @@ html.b #treepar {
 	border-bottom: .2em solid var(--f-h-b1);
 }
 html.b #wrap {
-	margin-top: 2em;
+	padding-top: 3.8em;
 }
 html.by .ghead,
 html.bz .ghead {

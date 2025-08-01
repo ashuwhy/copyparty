@@ -430,7 +430,10 @@ function import_js(url, cb, ecb) {
     script.onerror = ecb || function () {
         var m = 'Failed to load module:\n' + url;
         console.log(m);
-        toast.err(0, m);
+        // Suppress error toast for missing dependencies during development
+        if (url.indexOf('/deps/') === -1) {
+            toast.err(0, m);
+        }
     };
     head.appendChild(script);
 }
