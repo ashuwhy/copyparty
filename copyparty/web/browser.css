@@ -1205,7 +1205,7 @@ html.y #widget.open {
 }
 #wtoggle i {
 	vertical-align: middle;
-	margin-right: 0.5em;
+	/* margin-right: 0.5em; */
 }
 #wtoggle span {
 	vertical-align: middle;
