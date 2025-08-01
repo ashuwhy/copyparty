@@ -39,9 +39,9 @@ ve=$HOME/ve.copyparty
 	msg "creating python3 virtualenv"
 	python3 -m venv $ve
 
-	msg "installing copyparty"
+	msg "installing copyparty from your fork"
 	. $ve/bin/activate
-	pip install copyparty
+	pip install 'git+https://github.com/ashuwhy/copyparty.git@hovudstraum'
 
 	deactivate
 	touch $ve/.ok
