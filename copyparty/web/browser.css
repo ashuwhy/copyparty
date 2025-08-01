@@ -1180,9 +1180,7 @@ html.y #widget.open {
 #wtoggle * {
 	line-height: 1em;
 }
-#wtoggle svg {
-	width: 1em;
-	height: 1em;
+#wtoggle i {
 	vertical-align: middle;
 	margin-right: 0.5em;
 }

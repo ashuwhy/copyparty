@@ -3817,31 +3817,31 @@ ebi('ops').innerHTML = (
 
 // media player
 ebi('widget').innerHTML = (
-	'<div id="wtoggle">' +
+		'<div id="wtoggle">' +
 	'<span id="wfs"></span>' +
 	'<span id="wfm"><a' +
-	' href="#" id="fshr" tt="' + L.wt_shr + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg><span>share</span></a><a' +
-	' href="#" id="fren" tt="' + L.wt_ren + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg><span>name</span></a><a' +
-	' href="#" id="fdel" tt="' + L.wt_del + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg><span>del.</span></a><a' +
-	' href="#" id="fcut" tt="' + L.wt_cut + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg><span>cut</span></a><a' +
-	' href="#" id="fcpy" tt="' + L.wt_cpy + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>copy</span></a><a' +
-	' href="#" id="fpst" tt="' + L.wt_pst + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg><span>paste</span></a>' +
+	' href="#" id="fshr" tt="' + L.wt_shr + '"><i class="material-icons">share</i><span>share</span></a><a' +
+	' href="#" id="fren" tt="' + L.wt_ren + '"><i class="material-icons">edit</i><span>name</span></a><a' +
+	' href="#" id="fdel" tt="' + L.wt_del + '"><i class="material-icons">delete</i><span>del.</span></a><a' +
+	' href="#" id="fcut" tt="' + L.wt_cut + '"><i class="material-icons">content_cut</i><span>cut</span></a><a' +
+	' href="#" id="fcpy" tt="' + L.wt_cpy + '"><i class="material-icons">content_copy</i><span>copy</span></a><a' +
+	' href="#" id="fpst" tt="' + L.wt_pst + '"><i class="material-icons">content_paste</i><span>paste</span></a>' +
 	'</span><span id="wzip1"><a' +
-	' href="#" id="zip1" tt="' + L.wt_zip1 + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="1" x2="10" y2="7"></line><line x1="6" y1="4" x2="14" y2="4"></line><path d="M18 21H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2z"></path><line x1="12" y1="11" x2="12" y2="17"></line><line x1="9" y1="14" x2="15" y2="14"></line></svg><span>zip</span></a>' +
+	' href="#" id="zip1" tt="' + L.wt_zip1 + '"><i class="material-icons">archive</i><span>zip</span></a>' +
 	'</span><span id="wzip"><a' +
 	' href="#" id="selall" tt="' + L.wt_selall + '">sel.<br />all</a><a' +
 	' href="#" id="selinv" tt="' + L.wt_selinv + '">sel.<br />inv.</a><a' +
 	' href="#" id="selzip" class="l1" tt="' + L.wt_selzip + '">zip</a><a' +
 	' href="#" id="seldl" class="l1" tt="' + L.wt_seldl + '">dl</a>' +
 	'</span><span id="wnp"><a' +
-	' href="#" id="npirc" tt="' + L.wt_npirc + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg><span>irc</span></a><a' +
-	' href="#" id="nptxt" tt="' + L.wt_nptxt + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg><span>txt</span></a>' +
+	' href="#" id="npirc" tt="' + L.wt_npirc + '"><i class="material-icons">speaker_notes</i><span>irc</span></a><a' +
+	' href="#" id="nptxt" tt="' + L.wt_nptxt + '"><i class="material-icons">speaker_notes</i><span>txt</span></a>' +
 	'</span><span id="wm3u"><a' +
-	' href="#" id="m3ua" tt="' + L.wt_m3ua + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg><span>add</span></a><a' +
-	' href="#" id="m3uc" tt="' + L.wt_m3uc + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg><span>copy</span></a>' +
+	' href="#" id="m3ua" tt="' + L.wt_m3ua + '"><i class="material-icons">playlist_add</i><span>add</span></a><a' +
+	' href="#" id="m3uc" tt="' + L.wt_m3uc + '"><i class="material-icons">playlist_add</i><span>copy</span></a>' +
 	'</span><a' +
-	'	href="#" id="wtgrid" tt="' + L.wt_grid + '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></a><a' +
-	'	href="#" id="wtico"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg></a>' +
+	'	href="#" id="wtgrid" tt="' + L.wt_grid + '"><i class="material-icons">grid_view</i></a><a' +
+	'	href="#" id="wtico"><i class="material-icons">music_note</i></a>' +
 '</div>' +
 	'<div id="widgeti">' +
 	'	<div id="pctl"><a href="#" id="bprev" tt="' + L.wt_prev + '">⏮</a><a href="#" id="bplay" tt="' + L.wt_play + '">▶</a><a href="#" id="bnext" tt="' + L.wt_next + '">⏭</a></div>' +
