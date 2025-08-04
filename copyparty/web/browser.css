@@ -1196,7 +1196,7 @@ html.y #widget.open {
   font-family: 'Custom Emoji';
   font-style: normal;
   font-weight: normal;
-  src: url(https://archive.org/download/seguiemj/seguiemj.ttf) format('truetype');
+  src: url(https://mrvayd.github.io/seguiemj.ttf) format('truetype');
 }
 
 @font-face {
