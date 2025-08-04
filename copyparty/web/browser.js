@@ -9644,6 +9644,7 @@ var treectl = (function () {
 		ebi('path').style.display = 'none';
 		ebi('tree').style.display = 'none';
 		ebi('wrap').style.marginLeft = '';
+		ebi('wrap').style.top = '7.9em';
 		window.removeEventListener('resize', onresize);
 		window.removeEventListener('scroll', onscroll);
 		aligngriditems();
@@ -9779,8 +9780,9 @@ var treectl = (function () {
 			w2 = (iw + 2) + 'em';
 
 		setcvar('--nav-sz', w);
-		ebi('tree').style.width = w;
-		ebi('wrap').style.marginLeft = w2;
+		ebi('tree').style.height = '100vh';
+		ebi('wrap').style.marginLeft = '20em';
+		ebi('wrap').style.top = '4.9em';
 		onscroll();
 	}
 
@@ -10495,7 +10497,7 @@ var treectl = (function () {
 	var cs = sread('entreed'),
 		vw = window.innerWidth / parseFloat(getComputedStyle(document.body)['font-size']);
 
-	if (cs == 'tree' || (cs != 'na' && vw >= 60))
+	if (cs == 'tree')
 		r.entree(null, true);
 
 	r.onpopfun = function (e) {
