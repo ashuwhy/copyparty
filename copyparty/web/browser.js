@@ -3820,28 +3820,28 @@ ebi('widget').innerHTML = (
 		'<div id="wtoggle">' +
 	'<span id="wfs"></span>' +
 	'<span id="wfm"><a' +
-	' href="#" id="fshr" tt="' + L.wt_shr + '"><i class="material-icons">share</i><span>share</span></a><a' +
-	' href="#" id="fren" tt="' + L.wt_ren + '"><i class="material-icons">edit</i><span>name</span></a><a' +
-	' href="#" id="fdel" tt="' + L.wt_del + '"><i class="material-icons">delete</i><span>del.</span></a><a' +
-	' href="#" id="fcut" tt="' + L.wt_cut + '"><i class="material-icons">content_cut</i><span>cut</span></a><a' +
-	' href="#" id="fcpy" tt="' + L.wt_cpy + '"><i class="material-icons">content_copy</i><span>copy</span></a><a' +
-	' href="#" id="fpst" tt="' + L.wt_pst + '"><i class="material-icons">content_paste</i><span>paste</span></a>' +
+	' href="#" id="fshr" tt="' + L.wt_shr + '"><i class="material-symbols-rounded">share</i><span>share</span></a><a' +
+	' href="#" id="fren" tt="' + L.wt_ren + '"><i class="material-symbols-rounded">edit</i><span>name</span></a><a' +
+	' href="#" id="fdel" tt="' + L.wt_del + '"><i class="material-symbols-rounded">delete</i><span>del.</span></a><a' +
+	' href="#" id="fcut" tt="' + L.wt_cut + '"><i class="material-symbols-rounded">content_cut</i><span>cut</span></a><a' +
+	' href="#" id="fcpy" tt="' + L.wt_cpy + '"><i class="material-symbols-rounded">content_copy</i><span>copy</span></a><a' +
+	' href="#" id="fpst" tt="' + L.wt_pst + '"><i class="material-symbols-rounded">content_paste</i><span>paste</span></a>' +
 	'</span><a id="wzip1"' +
-	' href="#" id="zip1" tt="' + L.wt_zip1 + '"><i class="material-icons">archive</i></a>' +
+	' href="#" id="zip1" tt="' + L.wt_zip1 + '"><i class="material-symbols-rounded">archive</i></a>' +
 	'<span id="wzip"><a' +
 	' href="#" id="selall" tt="' + L.wt_selall + '">sel.<br />all</a><a' +
 	' href="#" id="selinv" tt="' + L.wt_selinv + '">sel.<br />inv.</a><a' +
 	' href="#" id="selzip" class="l1" tt="' + L.wt_selzip + '">zip</a><a' +
 	' href="#" id="seldl" class="l1" tt="' + L.wt_seldl + '">dl</a>' +
 	'</span><span id="wnp"><a' +
-	' href="#" id="npirc" tt="' + L.wt_npirc + '"><i class="material-icons">speaker_notes</i><span>irc</span></a><a' +
-	' href="#" id="nptxt" tt="' + L.wt_nptxt + '"><i class="material-icons">speaker_notes</i><span>txt</span></a>' +
+	' href="#" id="npirc" tt="' + L.wt_npirc + '"><i class="material-symbols-rounded">speaker_notes</i><span>irc</span></a><a' +
+	' href="#" id="nptxt" tt="' + L.wt_nptxt + '"><i class="material-symbols-rounded">speaker_notes</i><span>txt</span></a>' +
 	'</span><span id="wm3u"><a' +
-	' href="#" id="m3ua" tt="' + L.wt_m3ua + '"><i class="material-icons">playlist_add</i><span>add</span></a><a' +
-	' href="#" id="m3uc" tt="' + L.wt_m3uc + '"><i class="material-icons">playlist_add</i><span>copy</span></a>' +
+	' href="#" id="m3ua" tt="' + L.wt_m3ua + '"><i class="material-symbols-rounded">playlist_add</i><span>add</span></a><a' +
+	' href="#" id="m3uc" tt="' + L.wt_m3uc + '"><i class="material-symbols-rounded">playlist_add</i><span>copy</span></a>' +
 	'</span><a' +
-	'	href="#" id="wtgrid" tt="' + L.wt_grid + '"><i class="material-icons">grid_view</i></a><a' +
-	'	href="#" id="wtico"><i class="material-icons">music_note</i></a>' +
+	'	href="#" id="wtgrid" tt="' + L.wt_grid + '"><i class="material-symbols-rounded">grid_view</i></a><a' +
+	'	href="#" id="wtico"><i class="material-symbols-rounded">music_note</i></a>' +
 '</div>' +
 	'<div id="widgeti">' +
 	'	<div id="pctl"><a href="#" id="bprev" tt="' + L.wt_prev + '">⏮</a><a href="#" id="bplay" tt="' + L.wt_play + '">▶</a><a href="#" id="bnext" tt="' + L.wt_next + '">⏭</a></div>' +
