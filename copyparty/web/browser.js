@@ -5030,6 +5030,20 @@ var pbar = (function () {
 		};
 		img.onerror = function () {
 			console.log('Failed to load waveform thumbnail: ' + url);
+			
+			// Check if it's a 404 - server might not support thumbnails
+			var xhr = new XMLHttpRequest();
+			xhr.open('HEAD', url, true);
+			xhr.onload = xhr.onerror = function() {
+				if (this.status === 404) {
+					console.log('Server thumbnails disabled or FFmpeg not available');
+					// Could show user-friendly message here if needed
+				} else if (this.status >= 400) {
+					console.log('Thumbnail server error: ' + this.status);
+				}
+			};
+			xhr.send();
+			
 			r.wurl = r.wimg = null;
 		};
 		img.src = url;
@@ -6297,12 +6311,17 @@ function evau_error(e) {
 			if (this.status < 400)
 				return;
 
-			err = this.status == 403 ? e403 :
+			var statusErr = this.status == 403 ? e403 :
 				this.status == 404 ? e404 :
 				this.status == 500 ? e500 :
 				L.mm_e5xx + this.status;
 
-			toast.warn(15, esc(basenames(err + mfile)));
+			// Add helpful message for audio transcoding issues
+			if (this.status == 404 && /\?th=(mp3|opus)/.test(eplaya.src)) {
+				statusErr += '\n\nThe server may not have FFmpeg installed or audio transcoding may be disabled.\nTry playing the original file format instead.';
+			}
+
+			toast.warn(15, esc(basenames(statusErr + mfile)));
 		};
 		xhr.send();
 		return;
