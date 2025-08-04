@@ -5028,6 +5028,10 @@ var pbar = (function () {
 			r.wimg = img;
 			r.onresize();
 		};
+		img.onerror = function () {
+			console.log('Failed to load waveform thumbnail: ' + url);
+			r.wurl = r.wimg = null;
+		};
 		img.src = url;
 	};
 
@@ -6241,12 +6245,23 @@ function evau_error(e) {
 			err = L.mm_esupp;
 			if (/\.(aac|m4a)(\?|$)/i.exec(eplaya.rsrc) && !mpl.ac_aac) {
 				try {
-					ebi('ac_aac').click();
-					QS('a.play.act').click();
-					toast.warn(10, L.mm_opusen);
-					return;
+					var ac_aac_btn = ebi('ac_aac');
+					if (ac_aac_btn) {
+						ac_aac_btn.click();
+						var play_btn = QS('a.play.act');
+						if (play_btn) play_btn.click();
+						toast.warn(10, L.mm_opusen);
+						return;
+					}
 				}
-				catch (ex) { }
+				catch (ex) { 
+					console.log('Failed to enable AAC support: ' + ex);
+				}
+			}
+			
+			// Check if it's a server-side issue (404/403 for transcoded audio)
+			if (/\?th=(mp3|opus)/.test(eplaya.rsrc)) {
+				err += '\n\nServer may not support audio transcoding for this file format.';
 			}
 			break;
 		default:
@@ -11166,16 +11181,25 @@ var arcfmt = (function () {
 			o.setAttribute("href", m[1] + arg + m[4]);
 			o.textContent = fmt.split('_')[0];
 		}
-		ebi('selzip').textContent = fmt.split('_')[0];
-		ebi('selzip').setAttribute('fmt', arg);
+		var selzip = ebi('selzip');
+		if (selzip) {
+			selzip.textContent = fmt.split('_')[0];
+			selzip.setAttribute('fmt', arg);
+		}
 
-		QS('#zip1 span').textContent = fmt.split('_')[0];
-		ebi('zip1').setAttribute("href",
-			get_evpath() + (dk ? '?k=' + dk + '&': '?') + arg);
+		var zip1span = QS('#zip1 span');
+		if (zip1span) {
+			zip1span.textContent = fmt.split('_')[0];
+		}
+		var zip1 = ebi('zip1');
+		if (zip1) {
+			zip1.setAttribute("href",
+				get_evpath() + (dk ? '?k=' + dk + '&': '?') + arg);
+		}
 
 		if (!have_zip) {
-			ebi('zip1').style.display = 'none';
-			ebi('selzip').style.display = 'none';
+			if (zip1) zip1.style.display = 'none';
+			if (selzip) selzip.style.display = 'none';
 		}
 	}
 
