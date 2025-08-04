@@ -3826,9 +3826,9 @@ ebi('widget').innerHTML = (
 	' href="#" id="fcut" tt="' + L.wt_cut + '"><i class="material-icons">content_cut</i><span>cut</span></a><a' +
 	' href="#" id="fcpy" tt="' + L.wt_cpy + '"><i class="material-icons">content_copy</i><span>copy</span></a><a' +
 	' href="#" id="fpst" tt="' + L.wt_pst + '"><i class="material-icons">content_paste</i><span>paste</span></a>' +
-	'</span><span id="wzip1"><a' +
-	' href="#" id="zip1" tt="' + L.wt_zip1 + '"><i class="material-icons">archive</i><span>zip</span></a>' +
-	'</span><span id="wzip"><a' +
+	'</span><a id="wzip1"' +
+	' href="#" id="zip1" tt="' + L.wt_zip1 + '"><i class="material-icons">archive</i></a>' +
+	'<span id="wzip"><a' +
 	' href="#" id="selall" tt="' + L.wt_selall + '">sel.<br />all</a><a' +
 	' href="#" id="selinv" tt="' + L.wt_selinv + '">sel.<br />inv.</a><a' +
 	' href="#" id="selzip" class="l1" tt="' + L.wt_selzip + '">zip</a><a' +
@@ -11418,7 +11418,10 @@ var msel = (function () {
 
 		var zipvis = (is_srch || !have_zip) ? 'none' : '';
 		ebi('selzip').style.display = zipvis;
-		ebi('zip1').style.display = zipvis;
+		var zip1 = ebi('zip1');
+		if (zip1) {
+			zip1.style.display = zipvis;
+		}
 	}
 	return r;
 })();
