@@ -107,6 +107,7 @@ from .util import (
     sendfile_py,
     set_fperms,
     stat_resource,
+    str_anchor,
     ub64dec,
     ub64enc,
     ujoin,
@@ -657,6 +658,9 @@ class HttpCli(object):
                     self.pw = ""
                     self.uname = idp_usr
                     self.html_head += "<script>var is_idp=1</script>\n"
+                    zs = self.asrv.ases.get(idp_usr)
+                    if zs:
+                        self.set_idp_cookie(zs)
                 else:
                     self.log("unknown username: %r" % (idp_usr,), 1)
 
@@ -1194,15 +1198,6 @@ class HttpCli(object):
                 else:
                     self.reply(b"ssdp is disabled in server config", 404)
                     return False
-
-            if self.vpath.startswith(".cpr/dd/") and self.args.mpmc:
-                if self.args.mpmc == ".":
-                    raise Pebkac(404)
-
-                loc = self.args.mpmc.rstrip("/") + self.vpath[self.vpath.rfind("/") :]
-                h = {"Location": loc, "Cache-Control": "max-age=39"}
-                self.reply(b"", 301, headers=h)
-                return True
 
             if self.vpath == ".cpr/metrics":
                 return self.conn.hsrv.metrics.tx(self)
@@ -2082,15 +2077,15 @@ class HttpCli(object):
         rnd, lifetime, xbu, xau = self.upload_flags(vfs)
         lim = vfs.get_dbv(rem)[0].lim
         fdir = vfs.canonical(rem)
-        if lim:
-            fdir, rem = lim.all(
-                self.ip, rem, remains, vfs.realpath, fdir, self.conn.hsrv.broker
-            )
-
         fn = None
         if rem and not self.trailing_slash and not bos.path.isdir(fdir):
             fdir, fn = os.path.split(fdir)
             rem, _ = vsplit(rem)
+
+        if lim:
+            fdir, rem = lim.all(
+                self.ip, rem, remains, vfs.realpath, fdir, self.conn.hsrv.broker
+            )
 
         bos.makedirs(fdir, vf=vfs.flags)
 
@@ -2940,7 +2935,7 @@ class HttpCli(object):
                 msg = "new password OK"
 
         redir = (self.args.SRS + "?h") if ok else ""
-        h2 = '<a href="' + self.args.SRS + '?h">ack</a>'
+        h2 = '<a href="' + self.args.SRS + '?h">continue</a>'
         html = self.j2s("msg", h1=msg, h2=h2, redir=redir)
         self.reply(html.encode("utf-8"))
         return True
@@ -2969,7 +2964,8 @@ class HttpCli(object):
             dst += "_=1#" + html_escape(uhash, True, True)
 
         _, msg = self.get_pwd_cookie(pwd)
-        html = self.j2s("msg", h1=msg, h2='<a href="' + dst + '">ack</a>', redir=dst)
+        h2 = '<a href="' + dst + '">continue</a>'
+        html = self.j2s("msg", h1=msg, h2=h2, redir=dst)
         self.reply(html.encode("utf-8"))
         return True
 
@@ -2983,7 +2979,7 @@ class HttpCli(object):
         self.get_pwd_cookie("x")
 
         dst = self.args.SRS + "?h"
-        h2 = '<a href="' + dst + '">ack</a>'
+        h2 = '<a href="' + dst + '">continue</a>'
         html = self.j2s("msg", h1="ok bye", h2=h2, redir=dst)
         self.reply(html.encode("utf-8"))
         return True
@@ -3035,6 +3031,19 @@ class HttpCli(object):
             self.out_headers["Set-Cookie"] = ck
 
         return dur > 0, msg
+
+    def set_idp_cookie(self, ases) -> None:
+        k = "cppws" if self.is_https else "cppwd"
+        ck = gencookie(
+            k,
+            ases,
+            self.args.R,
+            self.args.cookie_lax,
+            self.is_https,
+            self.args.idp_cookie,
+            "; HttpOnly",
+        )
+        self.out_headers["Set-Cookie"] = ck
 
     def handle_mkdir(self) -> bool:
         assert self.parser  # !rm
@@ -3108,6 +3117,20 @@ class HttpCli(object):
                 f.write(b"`GRUNNUR`\n")
                 if "fperms" in vfs.flags:
                     set_fperms(f, vfs.flags)
+
+            dbv, vrem = vfs.get_dbv(rem)
+            self.conn.hsrv.broker.say(
+                "up2k.hash_file",
+                dbv.realpath,
+                dbv.vpath,
+                dbv.flags,
+                vrem,
+                sanitized,
+                self.ip,
+                bos.stat(fn).st_mtime,
+                self.uname,
+                True,
+            )
 
         vpath = "{}/{}".format(self.vpath, sanitized).lstrip("/")
         self.redirect(vpath, "?edit")
@@ -4668,7 +4691,7 @@ class HttpCli(object):
         # for f in fgen: print(repr({k: f[k] for k in ["vp", "ap"]}))
         cfmt = ""
         if self.thumbcli and not self.args.no_bacode:
-            for zs in ("opus", "mp3", "w", "j", "p"):
+            for zs in ("opus", "mp3", "flac", "wav", "w", "j", "p"):
                 if zs in self.ouparam or uarg == zs:
                     cfmt = zs
 
@@ -5048,6 +5071,13 @@ class HttpCli(object):
             self.reply(zb, mime="text/plain; charset=utf-8")
             return True
 
+        re_btn = ""
+        nre = self.args.ctl_re
+        if "re" in self.uparam:
+            self.out_headers["Refresh"] = str(nre)
+        elif nre:
+            re_btn = "&re=%s" % (nre,)
+
         html = self.j2s(
             "splash",
             this=self,
@@ -5065,6 +5095,7 @@ class HttpCli(object):
             mtpq=vs["mtpq"],
             dbwt=vs["dbwt"],
             url_suf=suf,
+            re=re_btn,
             k304=self.k304(),
             no304=self.no304(),
             k304vis=self.args.k304 > 0,
@@ -5354,15 +5385,16 @@ class HttpCli(object):
                 raise Pebkac(500, "sqlite3 not found on server; unpost is disabled")
             raise Pebkac(500, "server busy, cannot unpost; please retry in a bit")
 
-        zs = self.uparam.get("filter") or ""
-        filt = re.compile(zs, re.I) if zs else None
-        lm = "ups %r" % (zs,)
+        sfilt = self.uparam.get("filter") or ""
+        nfi, vfi = str_anchor(sfilt)
+        lm = "ups %d%r" % (nfi, sfilt)
 
         if self.args.shr and self.vpath.startswith(self.args.shr1):
             shr_dbv, shr_vrem = self.vn.get_dbv(self.rem)
         else:
             shr_dbv = None
 
+        wret: dict[str, Any] = {}
         ret: list[dict[str, Any]] = []
         t0 = time.time()
         lim = time.time() - self.args.unpost
@@ -5384,7 +5416,13 @@ class HttpCli(object):
         x = self.conn.hsrv.broker.ask(
             "up2k.get_unfinished_by_user", self.uname, "" if bad_xff else self.ip
         )
-        uret = x.get()
+        zdsa: dict[str, Any] = x.get()
+        uret: list[dict[str, Any]] = []
+        if "timeout" in zdsa:
+            wret["nou"] = 1
+        else:
+            uret = zdsa["f"]
+        nu = len(uret)
 
         if not self.args.unpost:
             allvols = []
@@ -5409,7 +5447,15 @@ class HttpCli(object):
             q = "select sz, rd, fn, at from up where ip=? and at>? order by at desc"
             for sz, rd, fn, at in cur.execute(q, (self.ip, lim)):
                 vp = "/" + "/".join(x for x in [vol.vpath, rd, fn] if x)
-                if filt and not filt.search(vp):
+                if nfi == 0 or (nfi == 1 and vfi in vp):
+                    pass
+                elif nfi == 2:
+                    if not vp.startswith(vfi):
+                        continue
+                elif nfi == 3:
+                    if not vp.endswith(vfi):
+                        continue
+                else:
                     continue
 
                 n -= 1
@@ -5430,6 +5476,8 @@ class HttpCli(object):
 
         if len(ret) > 2000:
             ret = ret[:2000]
+        if len(ret) >= 2000:
+            wret["oc"] = 1
 
         for rv in ret:
             rv["vp"] = quotep(rv["vp"])
@@ -5449,6 +5497,13 @@ class HttpCli(object):
             )
             rv["vp"] += "?k=" + fk[:nfk]
 
+        if not allvols:
+            wret["noc"] = 1
+            ret = []
+
+        nc = len(ret)
+        ret = uret + ret
+
         if shr_dbv:
             # translate vpaths from share-target to share-url
             # to satisfy access checks
@@ -5463,12 +5518,11 @@ class HttpCli(object):
             for v in ret:
                 v["vp"] = self.args.SR + v["vp"]
 
-        if not allvols:
-            ret = [{"kinshi": 1}]
-
-        jtxt = '{"u":%s,"c":%s}' % (uret, json.dumps(ret, separators=(",\n", ": ")))
-        zi = len(uret.split('\n"pd":')) - 1
-        self.log("%s #%d+%d %.2fsec" % (lm, zi, len(ret), time.time() - t0))
+        wret["f"] = ret
+        wret["nu"] = nu
+        wret["nc"] = nc
+        jtxt = json.dumps(wret, separators=(",\n", ": "))
+        self.log("%s #%d+%d %.2fsec" % (lm, nu, nc, time.time() - t0))
         self.reply(jtxt.encode("utf-8", "replace"), mime="application/json")
         return True
 
@@ -5483,8 +5537,8 @@ class HttpCli(object):
             raise Pebkac(500, "server busy, cannot list recent uploads; please retry")
 
         sfilt = self.uparam.get("filter") or ""
-        filt = re.compile(sfilt, re.I) if sfilt else None
-        lm = "ru %r" % (sfilt,)
+        nfi, vfi = str_anchor(sfilt)
+        lm = "ru %d%r" % (nfi, sfilt)
         self.log(lm)
 
         ret: list[dict[str, Any]] = []
@@ -5519,7 +5573,15 @@ class HttpCli(object):
             q = "select sz, rd, fn, ip, at from up where at>0 order by at desc"
             for sz, rd, fn, ip, at in cur.execute(q):
                 vp = "/" + "/".join(x for x in [vol.vpath, rd, fn] if x)
-                if filt and not filt.search(vp):
+                if nfi == 0 or (nfi == 1 and vfi in vp):
+                    pass
+                elif nfi == 2:
+                    if not vp.startswith(vfi):
+                        continue
+                elif nfi == 3:
+                    if not vp.endswith(vfi):
+                        continue
+                else:
                     continue
 
                 if not dots and "/." in vp:

@@ -7,6 +7,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=0.8, minimum-scale=0.6">
 	<meta name="theme-color" content="#{{ tcolor }}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap" rel="stylesheet">
 	<link rel="stylesheet" media="screen" href="{{ r }}/.cpr/ui.css?_={{ ts }}">
 	<link rel="stylesheet" media="screen" href="{{ r }}/.cpr/browser.css?_={{ ts }}">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -113,7 +116,7 @@
 <tr><td>{{ f.lead }}</td><td><a href="{{ f.href }}">{{ f.name|e }}</a></td><td>{{ f.sz }}</td>
 {%- if f.tags is defined %}
 	{%- for k in taglist %}<td>{{ f.tags[k]|e }}</td>{%- endfor %}
-{%- endif %}<td>{{ f.ext|e }}</td><td>{{ f.dt }}</td></tr>
+{%- endif %}<td>{{ f.ext }}</td><td>{{ f.dt }}</td></tr>
 {%- endfor %}
 
 		</tbody>

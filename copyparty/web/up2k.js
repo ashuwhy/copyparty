@@ -1572,7 +1572,7 @@ function up2k_init(subtle) {
 
     function linklist() {
         var ret = [],
-            base = document.location.origin.replace(/\/$/, '');
+            base = location.origin.replace(/\/$/, '');
 
         for (var a = 0; a < st.files.length; a++) {
             var t = st.files[a],
@@ -1595,7 +1595,7 @@ function up2k_init(subtle) {
         ev(e);
         var txt = linklist();
         cliptxt(txt + '\n', function () {
-            toast.inf(5, un_clip.format(txt.split('\n').length));
+            toast.inf(5, L.un_clip.format(txt.split('\n').length));
         });
     };
 
@@ -2511,8 +2511,8 @@ function up2k_init(subtle) {
                         var msg = [];
                         for (var a = 0, aa = Math.min(20, response.hits.length); a < aa; a++) {
                             var hit = response.hits[a],
-                                tr = unix2iso(hit.ts),
-                                tu = unix2iso(t.lmod),
+                                tr = unix2ui(hit.ts),
+                                tu = unix2ui(t.lmod),
                                 diff = parseInt(t.lmod) - parseInt(hit.ts),
                                 cdiff = (Math.abs(diff) <= 2) ? '3c0' : 'f0b',
                                 sdiff = '<span style="color:#' + cdiff + '">diff ' + diff;
@@ -3187,7 +3187,7 @@ function up2k_init(subtle) {
             return;
 
         try {
-            ebi('lifew').innerHTML = unix2iso((st.lifetime || lifetime) +
+            ebi('lifew').innerHTML = unix2ui((st.lifetime || lifetime) +
                 Date.now() / 1000 - new Date().getTimezoneOffset() * 60
             ).replace(' ', ', ').slice(0, -3);
         }

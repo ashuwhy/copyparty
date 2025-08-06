@@ -153,14 +153,16 @@ try { l.light = drk? 0:1; } catch (ex) { }
 })();
 
 	</script>
-	<script src="{{ r }}/.cpr/util.js?_={{ ts }}"></script>
-	<script src="{{ r }}/.cpr/deps/marked.js?_={{ ts }}"></script>
-	<script src="{{ r }}/.cpr/md.js?_={{ ts }}"></script>
-	{%- if edit %}
-	<script src="{{ r }}/.cpr/md2.js?_={{ ts }}"></script>
-	{%- endif %}
-	{%- if js %}
-	<script src="{{ js }}_={{ ts }}"></script>
-	{%- endif %}
+	<script type="module">
+		import "{{ r }}/.cpr/util.js?_={{ ts }}";
+		import "{{ r }}/.cpr/deps/marked.js?_={{ ts }}";
+		import "{{ r }}/.cpr/md.js?_={{ ts }}";
+		{%- if edit %}
+		import "{{ r }}/.cpr/md2.js?_={{ ts }}";
+		{%- endif %}
+		{%- if js %}
+		import "{{ js }}_={{ ts }}";
+		{%- endif %}
+	</script>
 </body></html>
 

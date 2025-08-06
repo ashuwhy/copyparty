@@ -1,6 +1,6 @@
 # coding: utf-8
 
-VERSION = (1, 19, 0)
+VERSION = (1, 18, 10)
 CODENAME = "logtail"
 BUILD_DT = (2025, 8, 4)
 

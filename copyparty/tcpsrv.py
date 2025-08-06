@@ -583,8 +583,7 @@ class TcpSrv(object):
         if not ip:
             return ""
 
-        if ":" in ip:
-            ip = "[{}]".format(ip)
+        hip = "[%s]" % (ip,) if ":" in ip else ip
 
         if self.args.http_only:
             https = ""
@@ -596,7 +595,7 @@ class TcpSrv(object):
         ports = t1.get(ip, t2.get(ip, []))
         dport = 443 if https else 80
         port = "" if dport in ports or not ports else ":{}".format(ports[0])
-        txt = "http{}://{}{}/{}".format(https, ip, port, self.args.qrl)
+        txt = "http{}://{}{}/{}".format(https, hip, port, self.args.qrl)
 
         btxt = txt.encode("utf-8")
         if PY2:
