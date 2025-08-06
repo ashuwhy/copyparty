@@ -36,12 +36,18 @@ ve=$HOME/ve.copyparty
 [ -e $ve/.ok ] || (
 	rm -rf $ve
 
+	command -v cfssl >/dev/null ||
+		addpkg cfssl
+
+	[ -d /storage/emulated/0 ] && [ ! -e ~/.hist ] &&
+		termux-setup-storage
+
 	msg "creating python3 virtualenv"
 	python3 -m venv $ve
 
 	msg "installing copyparty from your fork"
 	. $ve/bin/activate
-	pip install 'git+https://github.com/ashuwhy/copyparty.git@hovudstraum'
+	pip install 'git+https://github.com/ashuwhy/copyparty.git@ashu'
 
 	deactivate
 	touch $ve/.ok

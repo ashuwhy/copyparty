@@ -1,5 +1,5 @@
 :root {
-	--font-main: 'Funnel Display', sans-serif;
+	--font-main: "Open Sans", sans-serif;
 	--font-serif: serif;
 	--font-mono: 'scp';
 
@@ -27,7 +27,7 @@ html {
 	-webkit-text-size-adjust: 100%;
 	touch-action: manipulation;
 }
-#tt, #toast {
+#toast {
 	position: fixed;
 	max-width: 34em;
 	max-width: min(34em, 90%);
@@ -42,12 +42,17 @@ html {
 	z-index: 9001;
 }
 #tt {
+	position: fixed;
+	z-index: 9001;
 	max-width: min(34em, calc(100% - 3.3em));
-	overflow: hidden;
 	margin: .7em 0;
-	padding: 0 1.3em;
+	padding: 0 .5em;
 	height: 0;
+	overflow: hidden;
 	opacity: .1;
+	color: var(--fg);
+	background: var(--bg-u5);
+	border-radius: .2em;
 	transition: opacity 0.14s, height 0.14s, padding 0.14s;
 }
 #toast {
@@ -199,14 +204,9 @@ html {
 	box-shadow: 0 .2em 1em #000;
 }
 #tt.show {
-	padding: 1em 1.3em;
-	border-width: .4em 0;
+	padding: .2em .5em;
 	height: auto;
 	opacity: 1;
-}
-#tt.show.b {
-	padding: 1.5em 2em;
-	border-width: .5em 0;
 }
 .logue code,
 #modalc code,
@@ -370,16 +370,16 @@ html.y #tth {
 *:focus+label,
 #pctl *:focus,
 .btn:focus {
-	box-shadow: 0 .1em .2em #fc0 inset;
-	outline: #fc0 solid .1em;
+	outline: none;
+	box-shadow: none;
 	border-radius: .2em;
 }
 html.y *:focus,
 html.y *:focus+label,
 html.y #pctl *:focus,
 html.y .btn:focus {
-	box-shadow: 0 .1em .2em #037 inset;
-	outline: #037 solid .1em;
+	outline: none;
+	box-shadow: none;
 }
 input, button {
 	font-family: var(--font-main), sans-serif;
