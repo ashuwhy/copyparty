@@ -3820,28 +3820,28 @@ ebi('widget').innerHTML = (
 		'<div id="wtoggle">' +
 	'<span id="wfs"></span>' +
 	'<span id="wfm"><a' +
-	' href="#" id="fshr" tt="' + L.wt_shr + '"><i class="material-icons">share</i><span>share</span></a><a' +
-	' href="#" id="fren" tt="' + L.wt_ren + '"><i class="material-icons">edit</i><span>name</span></a><a' +
-	' href="#" id="fdel" tt="' + L.wt_del + '"><i class="material-icons">delete</i><span>del.</span></a><a' +
-	' href="#" id="fcut" tt="' + L.wt_cut + '"><i class="material-icons">content_cut</i><span>cut</span></a><a' +
-	' href="#" id="fcpy" tt="' + L.wt_cpy + '"><i class="material-icons">content_copy</i><span>copy</span></a><a' +
-	' href="#" id="fpst" tt="' + L.wt_pst + '"><i class="material-icons">content_paste</i><span>paste</span></a>' +
-	'</span><span id="wzip1"><a' +
-	' href="#" id="zip1" tt="' + L.wt_zip1 + '"><i class="material-icons">archive</i><span>zip</span></a>' +
-	'</span><span id="wzip"><a' +
+	' href="#" id="fshr" tt="' + L.wt_shr + '"><i class="material-symbols-rounded">share</i><span>share</span></a><a' +
+	' href="#" id="fren" tt="' + L.wt_ren + '"><i class="material-symbols-rounded">edit</i><span>name</span></a><a' +
+	' href="#" id="fdel" tt="' + L.wt_del + '"><i class="material-symbols-rounded">delete</i><span>del.</span></a><a' +
+	' href="#" id="fcut" tt="' + L.wt_cut + '"><i class="material-symbols-rounded">content_cut</i><span>cut</span></a><a' +
+	' href="#" id="fcpy" tt="' + L.wt_cpy + '"><i class="material-symbols-rounded">content_copy</i><span>copy</span></a><a' +
+	' href="#" id="fpst" tt="' + L.wt_pst + '"><i class="material-symbols-rounded">content_paste</i><span>paste</span></a>' +
+	'</span><a id="wzip1"' +
+	' href="#" id="zip1" tt="' + L.wt_zip1 + '"><i class="material-symbols-rounded">archive</i></a>' +
+	'<span id="wzip"><a' +
 	' href="#" id="selall" tt="' + L.wt_selall + '">sel.<br />all</a><a' +
 	' href="#" id="selinv" tt="' + L.wt_selinv + '">sel.<br />inv.</a><a' +
 	' href="#" id="selzip" class="l1" tt="' + L.wt_selzip + '">zip</a><a' +
 	' href="#" id="seldl" class="l1" tt="' + L.wt_seldl + '">dl</a>' +
 	'</span><span id="wnp"><a' +
-	' href="#" id="npirc" tt="' + L.wt_npirc + '"><i class="material-icons">speaker_notes</i><span>irc</span></a><a' +
-	' href="#" id="nptxt" tt="' + L.wt_nptxt + '"><i class="material-icons">speaker_notes</i><span>txt</span></a>' +
+	' href="#" id="npirc" tt="' + L.wt_npirc + '"><i class="material-symbols-rounded">speaker_notes</i><span>irc</span></a><a' +
+	' href="#" id="nptxt" tt="' + L.wt_nptxt + '"><i class="material-symbols-rounded">speaker_notes</i><span>txt</span></a>' +
 	'</span><span id="wm3u"><a' +
-	' href="#" id="m3ua" tt="' + L.wt_m3ua + '"><i class="material-icons">playlist_add</i><span>add</span></a><a' +
-	' href="#" id="m3uc" tt="' + L.wt_m3uc + '"><i class="material-icons">playlist_add</i><span>copy</span></a>' +
+	' href="#" id="m3ua" tt="' + L.wt_m3ua + '"><i class="material-symbols-rounded">playlist_add</i><span>add</span></a><a' +
+	' href="#" id="m3uc" tt="' + L.wt_m3uc + '"><i class="material-symbols-rounded">playlist_add</i><span>copy</span></a>' +
 	'</span><a' +
-	'	href="#" id="wtgrid" tt="' + L.wt_grid + '"><i class="material-icons">grid_view</i></a><a' +
-	'	href="#" id="wtico"><i class="material-icons">music_note</i></a>' +
+	'	href="#" id="wtgrid" tt="' + L.wt_grid + '"><i class="material-symbols-rounded">grid_view</i></a><a' +
+	'	href="#" id="wtico"><i class="material-symbols-rounded">music_note</i></a>' +
 '</div>' +
 	'<div id="widgeti">' +
 	'	<div id="pctl"><a href="#" id="bprev" tt="' + L.wt_prev + '">⏮</a><a href="#" id="bplay" tt="' + L.wt_play + '">▶</a><a href="#" id="bnext" tt="' + L.wt_next + '">⏭</a></div>' +
@@ -4049,7 +4049,7 @@ ebi('op_cfg').innerHTML = (
 // navpane
 ebi('tree').innerHTML = (
 	'<div id="treeh">\n' +
-	'	<a href="#" id="detree" tt="' + L.tt_detree + '">🍞...</a>\n' +
+	'	<a href="#" id="detree" tt="' + L.tt_detree + '">🍞</a>\n' +
 	'	<a href="#" class="btn" step="2" id="twobytwo" tt="Hotkey: D">+</a>\n' +
 	'	<a href="#" class="btn" step="-2" id="twig" tt="Hotkey: A">&ndash;</a>\n' +
 	'	<a href="#" class="btn" id="visdir" tt="' + L.tt_visdir + '">🎯</a>\n' +
@@ -5027,6 +5027,24 @@ var pbar = (function () {
 
 			r.wimg = img;
 			r.onresize();
+		};
+		img.onerror = function () {
+			console.log('Failed to load waveform thumbnail: ' + url);
+			
+			// Check if it's a 404 - server might not support thumbnails
+			var xhr = new XMLHttpRequest();
+			xhr.open('HEAD', url, true);
+			xhr.onload = xhr.onerror = function() {
+				if (this.status === 404) {
+					console.log('Server thumbnails disabled or FFmpeg not available');
+					// Could show user-friendly message here if needed
+				} else if (this.status >= 400) {
+					console.log('Thumbnail server error: ' + this.status);
+				}
+			};
+			xhr.send();
+			
+			r.wurl = r.wimg = null;
 		};
 		img.src = url;
 	};
@@ -6241,12 +6259,23 @@ function evau_error(e) {
 			err = L.mm_esupp;
 			if (/\.(aac|m4a)(\?|$)/i.exec(eplaya.rsrc) && !mpl.ac_aac) {
 				try {
-					ebi('ac_aac').click();
-					QS('a.play.act').click();
-					toast.warn(10, L.mm_opusen);
-					return;
+					var ac_aac_btn = ebi('ac_aac');
+					if (ac_aac_btn) {
+						ac_aac_btn.click();
+						var play_btn = QS('a.play.act');
+						if (play_btn) play_btn.click();
+						toast.warn(10, L.mm_opusen);
+						return;
+					}
 				}
-				catch (ex) { }
+				catch (ex) { 
+					console.log('Failed to enable AAC support: ' + ex);
+				}
+			}
+			
+			// Check if it's a server-side issue (404/403 for transcoded audio)
+			if (/\?th=(mp3|opus)/.test(eplaya.rsrc)) {
+				err += '\n\nServer may not support audio transcoding for this file format.';
 			}
 			break;
 		default:
@@ -6282,12 +6311,17 @@ function evau_error(e) {
 			if (this.status < 400)
 				return;
 
-			err = this.status == 403 ? e403 :
+			var statusErr = this.status == 403 ? e403 :
 				this.status == 404 ? e404 :
 				this.status == 500 ? e500 :
 				L.mm_e5xx + this.status;
 
-			toast.warn(15, esc(basenames(err + mfile)));
+			// Add helpful message for audio transcoding issues
+			if (this.status == 404 && /\?th=(mp3|opus)/.test(eplaya.src)) {
+				statusErr += '\n\nThe server may not have FFmpeg installed or audio transcoding may be disabled.\nTry playing the original file format instead.';
+			}
+
+			toast.warn(15, esc(basenames(statusErr + mfile)));
 		};
 		xhr.send();
 		return;
@@ -9644,6 +9678,7 @@ var treectl = (function () {
 		ebi('path').style.display = 'none';
 		ebi('tree').style.display = 'none';
 		ebi('wrap').style.marginLeft = '';
+		ebi('wrap').style.top = '7.9em';
 		window.removeEventListener('resize', onresize);
 		window.removeEventListener('scroll', onscroll);
 		aligngriditems();
@@ -9779,8 +9814,9 @@ var treectl = (function () {
 			w2 = (iw + 2) + 'em';
 
 		setcvar('--nav-sz', w);
-		ebi('tree').style.width = w;
-		ebi('wrap').style.marginLeft = w2;
+		ebi('tree').style.height = '100vh';
+		ebi('wrap').style.marginLeft = '20em';
+		ebi('wrap').style.top = '4.9em';
 		onscroll();
 	}
 
@@ -10495,7 +10531,7 @@ var treectl = (function () {
 	var cs = sread('entreed'),
 		vw = window.innerWidth / parseFloat(getComputedStyle(document.body)['font-size']);
 
-	if (cs == 'tree' || (cs != 'na' && vw >= 60))
+	if (cs == 'tree')
 		r.entree(null, true);
 
 	r.onpopfun = function (e) {
@@ -11164,16 +11200,25 @@ var arcfmt = (function () {
 			o.setAttribute("href", m[1] + arg + m[4]);
 			o.textContent = fmt.split('_')[0];
 		}
-		ebi('selzip').textContent = fmt.split('_')[0];
-		ebi('selzip').setAttribute('fmt', arg);
+		var selzip = ebi('selzip');
+		if (selzip) {
+			selzip.textContent = fmt.split('_')[0];
+			selzip.setAttribute('fmt', arg);
+		}
 
-		QS('#zip1 span').textContent = fmt.split('_')[0];
-		ebi('zip1').setAttribute("href",
-			get_evpath() + (dk ? '?k=' + dk + '&': '?') + arg);
+		var zip1span = QS('#zip1 span');
+		if (zip1span) {
+			zip1span.textContent = fmt.split('_')[0];
+		}
+		var zip1 = ebi('zip1');
+		if (zip1) {
+			zip1.setAttribute("href",
+				get_evpath() + (dk ? '?k=' + dk + '&': '?') + arg);
+		}
 
 		if (!have_zip) {
-			ebi('zip1').style.display = 'none';
-			ebi('selzip').style.display = 'none';
+			if (zip1) zip1.style.display = 'none';
+			if (selzip) selzip.style.display = 'none';
 		}
 	}
 
@@ -11416,7 +11461,10 @@ var msel = (function () {
 
 		var zipvis = (is_srch || !have_zip) ? 'none' : '';
 		ebi('selzip').style.display = zipvis;
-		ebi('zip1').style.display = zipvis;
+		var zip1 = ebi('zip1');
+		if (zip1) {
+			zip1.style.display = zipvis;
+		}
 	}
 	return r;
 })();
