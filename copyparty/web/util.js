@@ -120,7 +120,7 @@ function esc(txt) {
 function basenames(txt) {
     return (txt + '').replace(/https?:\/\/[^ \/]+\//g, '/').replace(/js\?_=[a-zA-Z]{4}/g, 'js');
 }
-if ((document.location + '').indexOf(',rej,') + 1)
+if ((location + '').indexOf(',rej,') + 1)
     window.onunhandledrejection = function (e) {
         var err = e.reason;
         try {
@@ -179,6 +179,9 @@ function vis_exh(msg, url, lineNo, columnNo, error) {
 
     if (!/\.js($|\?)/.exec(url))
         return;  // chrome debugger
+
+    if (url.indexOf('extension://') + 1)
+        return;
 
     if (url.indexOf(' > eval') + 1 && !evalex_fatal)
         return;  // md timer
@@ -732,7 +735,7 @@ function assert_vp(path) {
     if (path.indexOf('//') + 1)
         throw 'nonlocal1: ' + path;
 
-    var o = window.location.origin;
+    var o = location.origin;
     if (have_URL && (new URL(path, o)).origin != o)
         throw 'nonlocal2: ' + path;
 }
@@ -884,7 +887,7 @@ function uricom_adec(arr, li) {
 
 
 function get_evpath() {
-    var ret = document.location.pathname;
+    var ret = location.pathname;
 
     if (ret.indexOf('/') !== 0)
         ret = '/' + ret;
@@ -901,8 +904,26 @@ function noq_href(el) {
 }
 
 
+function pad2(v) {
+    return ('0' + v).slice(-2);
+}
+
+
 function unix2iso(ts) {
     return new Date(ts * 1000).toISOString().replace("T", " ").slice(0, -5);
+}
+
+
+function unix2iso_localtime(ts) {
+    var o = new Date(ts * 1000),
+        p = pad2;
+    return "{0}-{1}-{2} {3}:{4}:{5}".format(
+        o.getFullYear(),
+        p(o.getMonth() + 1),
+        p(o.getDate()),
+        p(o.getHours()),
+        p(o.getMinutes()),
+        p(o.getSeconds()));
 }
 
 
@@ -1197,6 +1218,13 @@ function scfg_bind(obj, oname, cname, defval, cb) {
 }
 
 
+window.unix2ui = (function () {
+    var v = sread('utctid');
+    v = v ? (v === '0') : (window.dutc === false);
+    return v ? unix2iso_localtime : unix2iso;
+})();
+
+
 function hist_push(url) {
     console.log("h-push " + url);
     try {
@@ -1215,10 +1243,10 @@ function hist_replace(url) {
 
 function sethash(hv) {
     if (window.history && history.replaceState) {
-        hist_replace(document.location.pathname + document.location.search + '#' + hv);
+        hist_replace(location.pathname + location.search + '#' + hv);
     }
     else {
-        document.location.hash = hv;
+        location.hash = hv;
     }
 }
 

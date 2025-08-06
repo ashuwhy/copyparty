@@ -1713,7 +1713,8 @@ class AuthSrv(object):
                 t = "Read-access has been disabled due to failsafe: No volumes were defined by the config-file. This failsafe is to prevent unintended access if this is due to accidental loss of config. You can override this safeguard and allow read/write to the working-directory by adding the following arguments:  -v .::rw"
                 self.log(t, 1)
                 axs = AXS()
-            vfs = VFS(self.log_func, absreal("."), "", "", axs, self.vf0())
+            zvf = {"tcolor": self.args.tcolor}
+            vfs = VFS(self.log_func, absreal("."), "", "", axs, zvf)
             if not axs.uread:
                 self.badcfg1 = True
         elif "" not in mount:
@@ -2751,6 +2752,8 @@ class AuthSrv(object):
                 "s_name": self.args.bname,
                 "have_up2k_idx": "e2d" in vf,
                 "have_acode": not self.args.no_acode,
+                "have_c2flac": self.args.allow_flac,
+                "have_c2wav": self.args.allow_wav,
                 "have_shr": self.args.shr,
                 "have_zip": not self.args.no_zip,
                 "have_mv": not self.args.no_mv,
@@ -2775,6 +2778,7 @@ class AuthSrv(object):
                 "dth3x": vf["th3x"],
                 "dvol": self.args.au_vol,
                 "idxh": int(self.args.ih),
+                "dutc": not self.args.localtime,
                 "themes": self.args.themes,
                 "turbolvl": self.args.turbo,
                 "nosubtle": self.args.nosubtle,
@@ -2865,7 +2869,10 @@ class AuthSrv(object):
 
         n = []
         q = "insert into us values (?,?,?)"
-        for uname in self.acct:
+        accs = list(self.acct)
+        if self.args.idp_h_usr and self.args.idp_cookie:
+            accs.extend(self.idp_accs.keys())
+        for uname in accs:
             if uname not in ases:
                 sid = ub64enc(os.urandom(blen)).decode("ascii")
                 cur.execute(q, (uname, sid, int(time.time())))
@@ -3457,7 +3464,7 @@ def expand_config_file(
     ipath += " -> " + fp
     ret.append("#\033[36m opening cfg file{}\033[0m".format(ipath))
 
-    cfg_lines = read_utf8(log, fp, True).split("\n")
+    cfg_lines = read_utf8(log, fp, True).replace("\t", " ").split("\n")
     if True:  # diff-golf
         for oln in [x.rstrip() for x in cfg_lines]:
             ln = oln.split("  #")[0].strip()
